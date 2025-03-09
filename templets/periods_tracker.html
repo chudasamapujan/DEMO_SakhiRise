@@ -26,8 +26,6 @@
             background: linear-gradient(135deg, var(--accent), var(--highlight));
             padding: 3rem 2rem;
             text-align: center;
-            position: relative;
-            overflow: hidden;
             animation: fadeIn 1s ease-in-out;
         }
         header h1 {
@@ -114,17 +112,17 @@
             transform: scale(1.05);
             box-shadow: 0 5px 15px var(--shadow);
         }
-        .results {
+        .results, .history {
             margin-top: 2rem;
             padding: 2rem;
             background: #2D2D2D;
             border-radius: 15px;
             text-align: center;
-            display: none; /* Hidden until data is submitted */
         }
-        .results p {
+        .results p, .history p {
             font-size: 1.1rem;
             color: var(--text-secondary);
+            margin: 0.5rem 0;
         }
         footer {
             background: var(--bg-secondary);
@@ -173,8 +171,8 @@
                     <input type="date" id="start_date" name="start_date" required>
                 </div>
                 <div class="form-group">
-                    <label for="cycle_length">Average Cycle Length (days):</label>
-                    <input type="number" id="cycle_length" name="cycle_length" min="20" max="40" value="28" required>
+                    <label for="cycle_length">Average Cycle Length (days, optional):</label>
+                    <input type="number" id="cycle_length" name="cycle_length" min="20" max="40" placeholder="28">
                 </div>
                 <div class="form-group">
                     <label for="symptoms">Symptoms (optional):</label>
@@ -185,11 +183,19 @@
                         <option value="headache">Headache</option>
                     </select>
                 </div>
-                <button type="submit" class="submit-btn">Track Now</button>
+                <div class="form-group">
+                    <label for="notify">Notify Me Before Next Period:</label>
+                    <input type="checkbox" id="notify" name="notify" value="yes">
+                </div>
+                <button type="submit" class="submit-btn">Track & Predict</button>
             </form>
-            <div class="results" id="results">
+            <div class="results" id="results" style="display: none;">
                 <p>Next Period: <span id="next_period"></span></p>
                 <p>Symptoms Logged: <span id="symptoms_logged"></span></p>
+                <p>Notification: <span id="notification_status"></span></p>
+            </div>
+            <div class="history" id="history">
+                <p>Previous Logs: <span id="past_logs">Loading...</span></p>
             </div>
         </section>
     </div>
@@ -199,19 +205,38 @@
     </footer>
 
     <script>
-        // Basic client-side form handling (for demo; backend will override)
+        // Fetch past logs on page load
+        fetch('/get_period_logs')
+            .then(response => response.json())
+            .then(data => {
+                const logs = data.logs.map(log => `${log.start_date} (${log.cycle_length} days)`).join(', ') || 'No logs yet';
+                document.getElementById('past_logs').textContent = logs;
+            });
+
+        // Handle form submission
         document.getElementById('periodsForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent default for demo; remove with real backend
-            const startDate = new Date(document.getElementById('start_date').value);
-            const cycleLength = parseInt(document.getElementById('cycle_length').value);
-            const symptoms = Array.from(document.getElementById('symptoms').selectedOptions).map(opt => opt.value);
+            e.preventDefault();
+            const formData = new FormData(this);
+            fetch('/track_periods', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('next_period').textContent = new Date(data.next_period).toDateString();
+                document.getElementById('symptoms_logged').textContent = data.symptoms;
+                document.getElementById('notification_status').textContent = data.notification;
+                document.getElementById('results').style.display = 'block';
 
-            const nextPeriod = new Date(startDate);
-            nextPeriod.setDate(startDate.getDate() + cycleLength);
-
-            document.getElementById('next_period').textContent = nextPeriod.toDateString();
-            document.getElementById('symptoms_logged').textContent = symptoms.length ? symptoms.join(', ') : 'None';
-            document.getElementById('results').style.display = 'block';
+                // Refresh past logs
+                fetch('/get_period_logs')
+                    .then(res => res.json())
+                    .then(logsData => {
+                        const logs = logsData.logs.map(log => `${log.start_date} (${log.cycle_length} days)`).join(', ') || 'No logs yet';
+                        document.getElementById('past_logs').textContent = logs;
+                    });
+            })
+            .catch(error => console.error('Error:', error));
         });
     </script>
 </body>
