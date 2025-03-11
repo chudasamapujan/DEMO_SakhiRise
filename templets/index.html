@@ -3,355 +3,2474 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SakhiRise - Home</title>
+    <title>SakhiRise - Empowering Women</title>
     <style>
-        /* Existing CSS */
         :root {
-            --bg-primary: #f5f5f5;
-            --bg-secondary: #ffffff;
-            --text-primary: #333333;
-            --text-secondary: #666666;
-            --accent: #ff4081;
-            --shadow: rgba(0, 0, 0, 0.1);
-            --highlight: #ff80ab;
+            --bg-primary: #0A1929;
+            --bg-secondary: #132F4C;
+            --text-primary: #F0F7FF;
+            --text-secondary: #B2BAC2;
+            --accent: #FF4081;
+            --accent-light: #FF80AB;
+            --shadow: rgba(0, 0, 0, 0.2);
+            --highlight: #7B1FA2;
+            --card-bg: rgba(19, 47, 76, 0.4);
+            --gradient-1: linear-gradient(135deg, var(--accent), var(--highlight));
+            --gradient-2: linear-gradient(45deg, var(--accent-light), var(--highlight));
         }
+
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
             overflow-x: hidden;
+            line-height: 1.6;
         }
+
+        /* Particle Container */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--gradient-1);
+            z-index: 1000;
+            transition: width 0.2s ease;
+        }
+
+        /* Enhanced Header */
         header {
-            background: linear-gradient(135deg, var(--accent), var(--highlight));
-            padding: 6rem 2rem;
+            background: rgba(19, 47, 76, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin: 0;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+            overflow: hidden;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Enhanced Hero Section */
+        .hero {
+            background: linear-gradient(135deg, 
+                rgba(10, 25, 41, 0.95), 
+                rgba(19, 47, 76, 0.95)),
+                url('https://source.unsplash.com/random/1920x1080/?technology') center/cover;
+            padding: 8rem 2rem 6rem;
             text-align: center;
             position: relative;
             overflow: hidden;
-            animation: fadeIn 1.2s ease-in-out;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
         }
-        header::after {
+
+        .hero::before {
             content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, 
+                rgba(255, 64, 129, 0.1) 0%,
+                rgba(123, 31, 162, 0.1) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin: 0;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 1.5rem auto;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .hero-button {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-button.primary {
+            background: var(--gradient-1);
+            color: white;
+        }
+
+        .hero-button.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: 2px solid var(--accent);
+        }
+
+        .hero-button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Enhanced Feature Cards */
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, 
+                rgba(19, 47, 76, 0.4),
+                rgba(19, 47, 76, 0.2));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right,
+                rgba(255, 64, 129, 0.1),
+                transparent 70%);
+            z-index: 0;
+        }
+
+        .feature-icon-container {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .feature-icon-container i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-light);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Enhanced Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 15px;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                transparent,
+                rgba(255, 64, 129, 0.1),
+                transparent 30%
+            );
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Enhanced CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg,
+                var(--bg-secondary),
+                rgba(19, 47, 76, 0.8));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            background: var(--gradient-1);
+            border-radius: 50px;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: transform 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            transform: translate(50%, 50%);
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid transparent;
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Cursor Effect */
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.2s ease;
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .custom-cursor {
+                display: block;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 6rem 1rem 4rem;
+            }
+
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .feature-cards {
+                grid-template-columns: 1fr;
+                padding: 2rem 1rem;
+            }
+
+            .stats-section {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* 3D Model Container Styles */
+        .model-container {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.3) 100%);
-            z-index: 0;
-        }
-        header h1 {
-            font-size: 4rem;
-            margin: 0;
+            pointer-events: none;
             z-index: 1;
-            animation: slideUp 1s ease-in-out 0.2s forwards;
-            opacity: 0;
         }
-        header p {
-            font-size: 1.6rem;
-            max-width: 800px;
-            margin: 1.5rem auto;
-            z-index: 1;
-            color: var(--text-secondary);
-            animation: slideUp 1s ease-in-out 0.4s forwards;
-            opacity: 0;
+
+        .floating-model {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            pointer-events: none;
         }
-        .cta-btn {
-            padding: 1rem 3rem;
-            background: var(--bg-secondary);
-            color: var(--accent);
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 1.3rem;
-            margin-top: 2rem;
-            z-index: 1;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: slideUp 1s ease-in-out 0.6s forwards;
-            opacity: 0;
+
+        .model-right {
+            right: 5%;
+            top: 20%;
+        }
+
+        .model-left {
+            left: 5%;
+            top: 60%;
+        }
+
+        /* 3D Card Effect */
+        .feature-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .feature-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .feature-card:hover .feature-card-inner {
+            transform: rotateY(10deg) rotateX(5deg);
+        }
+
+        /* 3D Stats Effect */
+        .stat-card {
+            transform-style: preserve-3d;
+            perspective: 800px;
+        }
+
+        .stat-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.4s;
+            transform-style: preserve-3d;
+        }
+
+        .stat-card:hover .stat-card-inner {
+            transform: translateZ(20px);
+        }
+
+        /* 3D Button Effect */
+        .hero-button {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .hero-button:hover {
+            transform: translateZ(10px) translateY(-3px);
+        }
+
+        /* Enhanced Header Styles */
+        .more-tools-dropdown {
+            position: relative;
             display: inline-block;
         }
-        .cta-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px var(--shadow);
+
+        .more-tools-btn {
+            color: var(--text-primary);
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
         }
-        nav {
+
+        .more-tools-btn:hover {
+            color: var(--accent);
+        }
+
+        .more-tools-content {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(19, 47, 76, 0.95);
+            backdrop-filter: blur(10px);
+            min-width: 200px;
+            border-radius: 12px;
+            padding: 0.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .more-tools-dropdown:hover .more-tools-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .more-tools-content a {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .more-tools-content a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Enhanced Loading Animation */
+        .loading-overlay {
+            background: var(--bg-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .lotus-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lotus-center {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            z-index: 10;
+            animation: pulse 1.5s ease-in-out infinite alternate;
+        }
+
+        .lotus-petal {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 50% 50% 0 50%;
+            transform-origin: bottom right;
+            opacity: 0;
+            animation: bloom 3s ease-in-out infinite;
+        }
+
+        .lotus-petal:nth-child(1) {
+            transform: rotate(0deg) translateX(30px) rotate(0deg);
+            animation-delay: 0.2s;
+        }
+
+        .lotus-petal:nth-child(2) {
+            transform: rotate(45deg) translateX(30px) rotate(-45deg);
+            animation-delay: 0.4s;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+        }
+
+        .lotus-petal:nth-child(3) {
+            transform: rotate(90deg) translateX(30px) rotate(-90deg);
+            animation-delay: 0.6s;
+            background: linear-gradient(135deg, var(--accent-light), var(--highlight));
+        }
+
+        .lotus-petal:nth-child(4) {
+            transform: rotate(135deg) translateX(30px) rotate(-135deg);
+            animation-delay: 0.8s;
+            background: var(--highlight);
+        }
+
+        .lotus-petal:nth-child(5) {
+            transform: rotate(180deg) translateX(30px) rotate(-180deg);
+            animation-delay: 1s;
+            background: linear-gradient(135deg, var(--highlight), var(--accent-light));
+        }
+
+        .lotus-petal:nth-child(6) {
+            transform: rotate(225deg) translateX(30px) rotate(-225deg);
+            animation-delay: 1.2s;
+            background: var(--accent-light);
+        }
+
+        .lotus-petal:nth-child(7) {
+            transform: rotate(270deg) translateX(30px) rotate(-270deg);
+            animation-delay: 1.4s;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+        }
+
+        .lotus-petal:nth-child(8) {
+            transform: rotate(315deg) translateX(30px) rotate(-315deg);
+            animation-delay: 1.6s;
+            background: var(--accent);
+        }
+
+        .lotus-text {
+            position: absolute;
+            bottom: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: fadeIn 2s ease-in-out infinite alternate;
+        }
+
+        .lotus-ripple {
+            position: absolute;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            opacity: 0;
+            width: 100px;
+            height: 100px;
+            animation: ripple 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        .lotus-ripple:nth-child(2) {
+            animation-delay: 0.5s;
+            border-color: var(--highlight);
+        }
+
+        .lotus-ripple:nth-child(3) {
+            animation-delay: 1s;
+            border-color: var(--accent-light);
+        }
+
+        @keyframes bloom {
+            0%, 15% {
+                opacity: 0;
+                transform-origin: bottom right;
+                width: 20px;
+                height: 20px;
+            }
+            40%, 80% {
+                opacity: 0.95;
+                width: 60px;
+                height: 80px;
+            }
+            100% {
+                opacity: 0.8;
+                width: 60px;
+                height: 70px;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                box-shadow: 0 0 0 0 rgba(255, 64, 129, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 15px rgba(255, 64, 129, 0);
+            }
+            100% {
+                transform: scale(0.8);
+            }
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0.1);
+                opacity: 1;
+            }
+            70% {
+                transform: scale(2);
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0.4; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Additional 3D Models */
+        .floating-model.model-center {
+            left: 50%;
+            top: 40%;
+            transform: translate(-50%, -50%);
+        }
+
+        .floating-model.model-bottom {
+            left: 50%;
+            bottom: 10%;
+            transform: translateX(-50%);
+        }
+
+        /* Additional Sections Styling */
+        .how-it-works {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            color: var(--accent-light);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: var(--gradient-1);
+            border-radius: 3px;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -1rem;
+            right: -1rem;
+            width: 4rem;
+            height: 4rem;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform: rotate(15deg);
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover .step-number {
+            transform: rotate(0deg);
+        }
+
+        .step-card h3 {
+            margin-top: 1rem;
+            font-size: 1.6rem;
+            color: var(--accent-light);
+        }
+
+        .step-card p {
+            margin-top: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 6rem 2rem;
             background: var(--bg-secondary);
-            padding: 1rem 2rem;
-            position: sticky;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
             top: 0;
-            z-index: 100;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, 
+                rgba(255, 64, 129, 0.05) 0%,
+                rgba(19, 47, 76, 0) 70%);
+        }
+
+        .testimonial-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background: rgba(19, 47, 76, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem auto;
+            position: relative;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            font-size: 5rem;
+            color: var(--accent);
+            opacity: 0.2;
+            font-family: serif;
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            color: var(--text-primary);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--accent);
+        }
+
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--accent-light);
+        }
+
+        .author-title {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 6rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .faq-container {
+            margin-top: 3rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--card-bg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 3px 15px var(--shadow);
-        }
-        .nav-links a {
-            color: var(--text-primary);
-            text-decoration: none;
-            margin: 0 1.5rem;
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        .nav-links a:hover {
-            color: var(--accent);
-            transform: translateY(-2px);
-        }
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
-        }
-        .intro {
-            text-align: center;
-            padding: 3rem 0;
-            opacity: 0;
-            animation: fadeIn 1s ease-in-out 0.8s forwards;
-        }
-        .intro h2 {
-            font-size: 2.8rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-        .intro p {
-            font-size: 1.3rem;
-            max-width: 900px;
-            margin: 0 auto;
-            color: var(--text-secondary);
-        }
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin-top: 4rem;
-        }
-        .category-card {
-            background: var(--bg-secondary);
-            padding: 2.5rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 5px 20px var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            opacity: 0;
-            animation: bounceIn 1s ease-in-out;
-        }
-        .category-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px var(--shadow);
-        }
-        .category-card h3 {
-            font-size: 2rem;
-            color: var(--accent);
-            margin-bottom: 1.2rem;
-        }
-        .category-card p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-        }
-        .testimonials {
-            margin-top: 5rem;
-            text-align: center;
-        }
-        .testimonials h2 {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeIn 1s ease-in-out 1.6s forwards;
-        }
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        .testimonial {
-            background: var(--bg-secondary);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px var(--shadow);
-            opacity: 0;
-            animation: bounceIn 1s ease-in-out;
-        }
-        .testimonial p {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            font-style: italic;
-        }
-        .testimonial span {
-            display: block;
-            margin-top: 1rem;
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-        .feedback {
-            text-align: center;
-            margin-top: 5rem;
-        }
-        .feedback h2 {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 2rem;
-        }
-        .feedback form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .feedback textarea {
-            width: 100%;
-            padding: 1rem;
-            border-radius: 10px;
-            border: 1px solid var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-        .feedback button {
-            padding: 1rem 2rem;
-            background: var(--accent);
-            color: var(--bg-secondary);
-            border: none;
-            border-radius: 30px;
-            font-size: 1.2rem;
             cursor: pointer;
+            font-weight: 600;
+            color: var(--text-primary);
             transition: background 0.3s ease;
         }
-        .feedback button:hover {
-            background: var(--highlight);
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
         }
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--accent);
-            color: var(--bg-secondary);
-            padding: 1rem;
-            border-radius: 50%;
-            text-decoration: none;
-            font-size: 1.5rem;
-            box-shadow: 0 5px 15px var(--shadow);
-            transition: background 0.3s ease;
+
+        .faq-question i {
+            transition: transform 0.3s ease;
         }
-        .back-to-top:hover {
-            background: var(--highlight);
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
         }
-        footer {
-            background: var(--bg-secondary);
-            padding: 2.5rem;
-            text-align: center;
+
+        .faq-answer p {
             color: var(--text-secondary);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            animation: fadeIn 1s ease-in-out 2s forwards;
-            opacity: 0;
+            padding-bottom: 1.5rem;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
         }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px); }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding-top: 0.5rem;
+        }
+
+        /* 3D Model Scroll Effects */
+        .model-container {
+            transition: transform 0.2s ease-out;
+        }
+
+        .floating-model {
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        }
+
+        /* Animation for numbers counting */
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes bounceIn {
-            0% {
-                transform: scale(0.5);
-                opacity: 0;
+
+        .stat-number {
+            animation: countUp 2s forwards;
+            opacity: 0;
+        }
+
+        /* Enhanced button hover */
+        .cta-button:hover {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Magic lines connector animation */
+        .magic-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            height: 2px;
+            width: 100%;
+            top: 50%;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 1s ease;
+            opacity: 0.6;
+            z-index: -1;
+        }
+
+        .magic-line.active {
+            transform: scaleX(1);
+        }
+
+        /* Floating animations with different timings */
+        .float-slow {
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .float-medium {
+            animation: float 6s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        .float-fast {
+            animation: float 4s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .steps-container, 
+            .testimonial-container {
+                grid-template-columns: 1fr;
             }
-            60% {
-                transform: scale(1.2);
-                opacity: 1;
+
+            .testimonial-card {
+                padding: 2rem 1.5rem;
             }
-            100% {
-                transform: scale(1);
+
+            .section-title {
+                font-size: 2.2rem;
             }
         }
+
+        /* Timeline Section Styles */
+        .timeline-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 4px;
+            background: var(--gradient-1);
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 4px;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 30px;
+            position: relative;
+            margin-bottom: 3rem;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(even) {
+            align-self: flex-end;
+            justify-content: flex-start;
+            padding-left: 30px;
+            padding-right: 0;
+            margin-left: auto;
+        }
+
+        .timeline-item-content {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            width: 400px;
+            max-width: 100%;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transform: translateZ(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .timeline-item-content:hover {
+            transform: translateZ(10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-item-content::after {
+            content: '';
+            position: absolute;
+            right: -15px;
+            top: calc(50% - 15px);
+            border: 15px solid transparent;
+            border-left-color: var(--card-bg);
+        }
+
+        .timeline-item:nth-child(even) .timeline-item-content::after {
+            right: auto;
+            left: -15px;
+            border-color: transparent;
+            border-right-color: var(--card-bg);
+        }
+
+        .timeline-item-date {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-light);
+        }
+
+        .timeline-item p {
+            color: var(--text-secondary);
+        }
+
+        .timeline-dot {
+            background: var(--accent);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            position: absolute;
+            top: calc(50% - 12.5px);
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 4px var(--bg-primary), 0 0 0 8px rgba(255, 64, 129, 0.2);
+            z-index: 1;
+        }
+
+        /* Success Stories Section */
+        .success-stories {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, 
+                rgba(10, 25, 41, 0.95), 
+                rgba(19, 47, 76, 0.95)),
+                url('https://source.unsplash.com/random/1920x1080/?women') center/cover;
+            position: relative;
+        }
+
+        .success-stories::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, 
+                rgba(255, 64, 129, 0.1) 0%,
+                rgba(19, 47, 76, 0) 70%);
+        }
+
+        .success-carousel {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+
+        .success-slides {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 500px;
+        }
+
+        .success-slide {
+            min-width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .success-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 5px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .success-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .success-title {
+            font-size: 2.2rem;
+            color: var(--accent-light);
+            margin-bottom: 1rem;
+        }
+
+        .success-quote {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .success-info {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-nav:hover {
+            background: var(--accent);
+        }
+
+        .carousel-prev {
+            left: 20px;
+        }
+
+        .carousel-next {
+            right: 20px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 0.5rem;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--accent);
+            transform: scale(1.2);
+        }
+
+        /* Theme Switcher */
+        .theme-switcher {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .theme-switcher:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-switcher i {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        /* Light Theme Variables */
+        body[data-theme="light"] {
+            --bg-primary: #f7f9fc;
+            --bg-secondary: #e9eef5;
+            --text-primary: #2a3a4a;
+            --text-secondary: #576778;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --card-bg: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Footer Styles */
+        footer {
+            background: var(--bg-secondary);
+            padding: 4rem 2rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-column h4 {
+            color: var(--accent-light);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--gradient-1);
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 3rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--gradient-1);
+            transform: translateY(-3px);
+        }
+
+        .social-link i {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+        }
+
+        /* Enhanced Parallax Effect */
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            transition: transform 0.1s ease-out;
+        }
+
+        /* Enhanced Animations */
+        @keyframes floatWithRotate {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        .float-rotate {
+            animation: floatWithRotate 8s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 10px var(--accent); }
+            50% { box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent-light); }
+            100% { box-shadow: 0 0 10px var(--accent); }
+        }
+
+        .glow-effect {
+            animation: glowPulse 3s infinite;
+        }
+
+        /* Mobile responsiveness improvement */
         @media (max-width: 768px) {
-            header { padding: 4rem 1rem; }
-            header h1 { font-size: 2.8rem; }
-            header p { font-size: 1.3rem; }
-            .nav-links a { margin: 0.8rem; font-size: 1rem; }
-            nav { flex-direction: column; padding: 1rem; }
-            .intro h2 { font-size: 2.2rem; }
-            .intro p { font-size: 1.1rem; }
-            .categories, .testimonial-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .category-card, .testimonial { padding: 2rem; }
-            .cta-btn { padding: 0.8rem 2rem; font-size: 1.1rem; }
+            .timeline-container::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-right: 0;
+                padding-left: 80px;
+            }
+
+            .timeline-item:nth-child(even) {
+                align-self: auto;
+                justify-content: flex-start;
+                padding-left: 80px;
+                padding-right: 0;
+                margin-left: 0;
+            }
+
+            .timeline-dot {
+                left: 30px;
+            }
+
+            .timeline-item-content {
+                width: 100%;
+            }
+
+            .timeline-item-content::after {
+                right: auto;
+                left: -15px;
+                border-color: transparent;
+                border-right-color: var(--card-bg);
+            }
+
+            .success-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .success-title {
+                font-size: 1.8rem;
+            }
+
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+            }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
 </head>
 <body data-theme="dark">
-    <header>
-        <h1>SakhiRise</h1>
-        <p>Rise together with tools for every woman—health, safety, finance, and skills in one place.</p>
-        <a href="#categories" class="cta-btn">Explore Now</a>
-    </header>
-
-    <nav>
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#features">Features</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+    <div class="scroll-progress"></div>
+    <div class="custom-cursor"></div>
+    <div id="particles-js"></div>
+    <div class="loading-overlay">
+        <div class="lotus-container">
+            <div class="lotus-ripple"></div>
+            <div class="lotus-ripple"></div>
+            <div class="lotus-ripple"></div>
+            <div class="lotus-petal"></div>
+            <div class="lotus-petal"></div>
+            <div class="lotus-petal"></div>
+            <div class="lotus-petal"></div>
+            <div class="lotus-petal"></div>
+            <div class="lotus-petal"></div>
+            <div class="lotus-petal"></div>
+            <div class="lotus-petal"></div>
+            <div class="lotus-center"></div>
+            <div class="lotus-text">SakhiRise</div>
         </div>
-    </nav>
-
-    <div class="container">
-        <section class="intro">
-            <h2>Your Journey Starts Here</h2>
-            <p>SakhiRise is your friendly companion, offering over 20 easy-to-use tools to empower you in every part of life. From staying healthy and safe to growing your skills and money, we’re with you every step of the way.</p>
-        </section>
-
-        <section id="categories" class="categories">
-            <div class="category-card">
-                <h3>Health</h3>
-                <p>Track your periods, sync with Google Fit, find medical stores, and boost your style with confidence.</p>
-            </div>
-            <div class="category-card">
-                <h3>Safety</h3>
-                <p>Stay secure with quick alerts, live tracking, fake calls, and tips to protect yourself every day.</p>
-            </div>
-            <div class="category-card">
-                <h3>Financial</h3>
-                <p>Plan your budget, learn money skills, and watch your savings grow with simple tools.</p>
-            </div>
-            <div class="category-card">
-                <h3>Study</h3>
-                <p>Find skills, earn certificates, and connect with mentors to shape your future.</p>
-            </div>
-            <div class="category-card">
-                <h3>More Tools</h3>
-                <p>Chat with our AI bot, get voice help, and join a community of women like you.</p>
-            </div>
-        </section>
-
-        <section class="testimonials">
-            <h2>What Women Say</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial">
-                    <p>"SakhiRise feels like a friend who’s always there—especially the fake call feature!"</p>
-                    <span>- Priya, Mumbai</span>
-                </div>
-                <div class="testimonial">
-                    <p>"The AI chat bot and periods tracker make my life so much easier."</p>
-                    <span>- Anjali, Delhi</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="feedback">
-            <h2>Share Your Feedback</h2>
-            <form>
-                <textarea placeholder="Your feedback..." rows="5"></textarea>
-                <button type="submit">Submit</button>
-            </form>
-        </section>
     </div>
 
-    <a href="#top" class="back-to-top">↑ Back to Top</a>
+    <header>
+        <h1>SakhiRise</h1>
+        <nav class="nav-links">
+            <a href="#" data-section="home">Home</a>
+            <a href="#" data-section="health">Health</a>
+            <a href="#" data-section="safety">Safety</a>
+            <a href="#" data-section="financial">Financial</a>
+            <a href="#" data-section="study">Study</a>
+            <div class="more-tools-dropdown">
+                <button class="more-tools-btn">
+                    More Tools
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="more-tools-content">
+                    <a href="#"><i class="fas fa-book"></i>Resources</a>
+                    <a href="#"><i class="fas fa-comments"></i>Community</a>
+                    <a href="#"><i class="fas fa-chart-line"></i>Analytics</a>
+                    <a href="#"><i class="fas fa-cog"></i>Settings</a>
+                </div>
+            </div>
+        </nav>
+    </header>
 
+    <div id="mainContent">
+        <!-- Hero Section -->
+        <div class="hero" id="hero">
+            <div class="model-container">
+                <div id="hero-model" class="floating-model model-right"></div>
+                <div id="hero-model-2" class="floating-model model-left"></div>
+                <div id="hero-model-3" class="floating-model model-center"></div>
+                <div id="hero-model-4" class="floating-model model-bottom"></div>
+            </div>
+            <h2>Empowering Women Through Technology</h2>
+            <p>Your comprehensive platform for health tracking, safety tools, financial guidance, and educational resources.</p>
+            <div class="hero-buttons">
+                <a href="#features" class="hero-button primary">Explore Features</a>
+                <a href="#about" class="hero-button secondary">Learn More</a>
+            </div>
+        </div>
+
+        <!-- Feature Cards Section -->
+        <div class="feature-cards" id="features">
+            <div class="feature-card">
+                <div class="feature-card-inner">
+                    <div class="feature-icon-container">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Health Tracking</h3>
+                    <p>Monitor your health with our comprehensive period tracker and wellness tools. Stay informed about your body and make better health decisions.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-inner">
+                    <div class="feature-icon-container">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Safety First</h3>
+                    <p>Access emergency contacts, location sharing, and safety alerts with a single tap. Your safety is our top priority.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-inner">
+                    <div class="feature-icon-container">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Learn & Grow</h3>
+                    <p>Access educational resources, career guidance, and skill development tools to achieve your goals.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline Section -->
+        <section class="timeline-section" id="timeline">
+            <h2 class="section-title reveal">Our Journey</h2>
+            <p class="text-center reveal">From a small idea to a platform that impacts thousands of women, here's how SakhiRise evolved over time.</p>
+            
+            <div class="timeline-container">
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-item-content">
+                        <div class="timeline-item-date">2018</div>
+                        <h3>The Beginning</h3>
+                        <p>SakhiRise was founded with a vision to create a comprehensive platform that addresses the unique challenges faced by women in India.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-item-content">
+                        <div class="timeline-item-date">2019</div>
+                        <h3>First 1,000 Users</h3>
+                        <p>We reached our first milestone of 1,000 active users and launched our period tracking and health monitoring features.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-item-content">
+                        <div class="timeline-item-date">2020</div>
+                        <h3>Safety Features Added</h3>
+                        <p>In response to the pandemic, we expanded our platform to include safety alerts, emergency contacts, and location sharing.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-item-content">
+                        <div class="timeline-item-date">2021</div>
+                        <h3>Financial Tools Launch</h3>
+                        <p>We introduced financial planning tools, resources for women entrepreneurs, and partnered with financial institutions.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-item-content">
+                        <div class="timeline-item-date">2022</div>
+                        <h3>Educational Expansion</h3>
+                        <p>Expanded our educational resources, added career guidance, and launched mentorship programs connecting women with industry leaders.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-item-content">
+                        <div class="timeline-item-date">2023</div>
+                        <h3>10,000+ Users</h3>
+                        <p>Reached 10,000+ active users, launched our mobile app, and expanded our services to rural areas through partnerships.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works" id="how-it-works">
+            <h2 class="section-title reveal">How SakhiRise Works</h2>
+            <p class="text-center reveal">Our platform is designed to be intuitive and easy to use, providing you with the tools you need for personal growth and safety.</p>
+            
+            <div class="steps-container">
+                <div class="step-card reveal">
+                    <div class="step-number">1</div>
+                    <h3>Create Your Profile</h3>
+                    <p>Sign up and customize your personal dashboard with the tools and resources most relevant to your needs. Your data remains private and secure.</p>
+                </div>
+                <div class="magic-line"></div>
+                <div class="step-card reveal">
+                    <div class="step-number">2</div>
+                    <h3>Set Your Goals</h3>
+                    <p>Whether it's health tracking, financial planning, or educational achievements, set personalized goals and track your progress over time.</p>
+                </div>
+                <div class="magic-line"></div>
+                <div class="step-card reveal">
+                    <div class="step-number">3</div>
+                    <h3>Access Resources</h3>
+                    <p>Browse our extensive library of educational content, connect with professionals, and use our specialized tools tailored for women's needs.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-card-inner">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-inner">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Health Resources</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-inner">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support Available</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-inner">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Secure</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Stories Section -->
+        <section class="success-stories" id="success-stories">
+            <div class="parallax-bg" id="success-parallax"></div>
+            <h2 class="section-title reveal">Success Stories</h2>
+            
+            <div class="success-carousel">
+                <div class="success-slides" id="success-slides">
+                    <div class="success-slide">
+                        <div class="success-image">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Ritu Sharma">
+                        </div>
+                        <h3 class="success-title">From Homemaker to Entrepreneur</h3>
+                        <p class="success-quote">"After 10 years as a homemaker, I used SakhiRise's financial tools to start my handcraft business. The platform connected me with mentors and provided resources that helped me grow from a small home business to a company with 15 employees in just two years."</p>
+                        <div class="success-info">Ritu Sharma, 38 | Delhi</div>
+                    </div>
+                    
+                    <div class="success-slide">
+                        <div class="success-image">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Meera Patel">
+                        </div>
+                        <h3 class="success-title">Health Journey Transformation</h3>
+                        <p class="success-quote">"The health tracking tools helped me identify patterns in my symptoms that doctors had missed for years. I was finally diagnosed with PCOS and could manage it effectively. SakhiRise connected me with specialists and support groups that changed my life."</p>
+                        <div class="success-info">Meera Patel, 26 | Mumbai</div>
+                    </div>
+                    
+                    <div class="success-slide">
+                        <div class="success-image">
+                            <img src="https://randomuser.me/api/portraits/women/70.jpg" alt="Aisha Khan">
+                        </div>
+                        <h3 class="success-title">Safety in a New City</h3>
+                        <p class="success-quote">"When I moved to Bangalore for work, I felt alone and unsafe. SakhiRise's safety features helped me connect with other women in my area, find safe accommodations, and set up emergency contacts. The community became my support system in a new city."</p>
+                        <div class="success-info">Aisha Khan, 24 | Bangalore</div>
+                    </div>
+                </div>
+                
+                <div class="carousel-nav carousel-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="carousel-nav carousel-next">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                
+                <div class="carousel-dots" id="carousel-dots">
+                    <div class="carousel-dot active"></div>
+                    <div class="carousel-dot"></div>
+                    <div class="carousel-dot"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials" id="testimonials">
+            <h2 class="section-title reveal">What Women Say</h2>
+            
+            <div class="testimonial-container">
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text">"SakhiRise has completely transformed how I manage my health and personal safety. The period tracker is incredibly accurate, and the emergency features give me peace of mind when I'm traveling alone."</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Priya Sharma">
+                        </div>
+                        <div class="author-info">
+                            <span class="author-name">Priya Sharma</span>
+                            <span class="author-title">College Student, Delhi</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text">"The financial planning tools helped me gain control over my finances and start my own small business. I especially love the community section where I can connect with other women entrepreneurs."</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Anjali Mehta">
+                        </div>
+                        <div class="author-info">
+                            <span class="author-name">Anjali Mehta</span>
+                            <span class="author-title">Entrepreneur, Mumbai</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section" id="faq">
+            <h2 class="section-title reveal">Frequently Asked Questions</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        <span>How secure is my personal health data?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Your privacy is our top priority. All health data is encrypted and stored securely. We never share your personal information with third parties without your explicit consent. You have complete control over what information you choose to store and share.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        <span>Is SakhiRise available on mobile devices?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! SakhiRise is fully responsive and works on all devices. We also offer native mobile apps for iOS and Android, giving you access to all features even when you're offline, with automatic syncing when you reconnect.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        <span>How can I connect with other women on the platform?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our Community section allows you to join interest-based groups, participate in discussions, and connect with mentors. All community interactions are moderated to ensure a safe, supportive environment for all members.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        <span>Are the educational resources free to access?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most of our educational content is completely free. We offer additional premium courses and workshops at affordable prices, with scholarships available for those who need financial assistance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>Ready to Take Control?</h2>
+            <p>Join thousands of women who have already transformed their lives with SakhiRise</p>
+            <a href="#signup" class="cta-button">Get Started Today</a>
+        </div>
+    </div>
+
+    <!-- Theme Switcher -->
+    <div class="theme-switcher" id="theme-switcher">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Footer -->
     <footer>
-        <p>© 2025 SakhiRise. Designed with ❤️ for women everywhere.</p>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>SakhiRise</h4>
+                <p>Empowering women through technology, support, and community. Join us in creating a more equitable future.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Features</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-heartbeat"></i> Health Tracking</a></li>
+                    <li><a href="#"><i class="fas fa-shield-alt"></i> Safety Tools</a></li>
+                    <li><a href="#"><i class="fas fa-money-bill-wave"></i> Financial Planning</a></li>
+                    <li><a href="#"><i class="fas fa-graduation-cap"></i> Educational Resources</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> Community Support</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-handshake"></i> Partners</a></li>
+                    <li><a href="#"><i class="fas fa-newspaper"></i> Blog</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="#"><i class="fas fa-briefcase"></i> Careers</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-lock"></i> Privacy Policy</a></li>
+                    <li><a href="#"><i class="fas fa-gavel"></i> Terms of Service</a></li>
+                    <li><a href="#"><i class="fas fa-cookie"></i> Cookie Policy</a></li>
+                    <li><a href="#"><i class="fas fa-universal-access"></i> Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 SakhiRise. All rights reserved. Designed with <i class="fas fa-heart" style="color: var(--accent);"></i> for women everywhere.</p>
+        </div>
     </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script>
+        // Show Content
+        function showContent(sectionId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.classList.add('active');
+            }
+        }
+
+        // Header Navigation
+        document.querySelectorAll('.nav-links a').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const sectionId = this.getAttribute('data-section');
+                showContent(sectionId);
+            });
+        });
+
+        // Initial Load
+        showContent('home');
+
+        // Particle.js Configuration
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#FF4081' },
+                shape: { type: 'circle' },
+                opacity: {
+                    value: 0.5,
+                    random: false,
+                    animation: { enable: true, speed: 1, minimumValue: 0.1, sync: false }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    animation: { enable: true, speed: 2, minimumValue: 0.1, sync: false }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#FF4081',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    outMode: 'out',
+                    bounce: false,
+                }
+            },
+            interactivity: {
+                detectsOn: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                },
+                modes: {
+                    repulse: { distance: 100, duration: 0.4 },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.querySelector('.scroll-progress');
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            scrollProgress.style.width = `${scrollPercent}%`;
+        });
+
+        // Custom Cursor
+        document.addEventListener('mousemove', (e) => {
+            const cursor = document.querySelector('.custom-cursor');
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Scroll Reveal
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+
+        // Loading Animation
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.loading-overlay');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+            }, 1000);
+        });
+
+        // Add reveal class to elements
+        document.querySelectorAll('.feature-card, .stat-card').forEach(el => {
+            el.classList.add('reveal');
+        });
+
+        // Initialize scroll reveal
+        reveal();
+
+        // 3D Model Animation
+        function init3DModels() {
+            // First 3D Model
+            const scene1 = new THREE.Scene();
+            const camera1 = new THREE.PerspectiveCamera(75, 300 / 300, 0.1, 1000);
+            const renderer1 = new THREE.WebGLRenderer({ alpha: true });
+            renderer1.setSize(300, 300);
+            document.getElementById('hero-model').appendChild(renderer1.domElement);
+
+            // Add ambient light
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene1.add(ambientLight);
+
+            // Add directional light
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(0, 1, 1);
+            scene1.add(directionalLight);
+
+            // Create floating sphere
+            const geometry = new THREE.SphereGeometry(1, 32, 32);
+            const material = new THREE.MeshPhongMaterial({
+                color: 0xFF4081,
+                emissive: 0x440022,
+                specular: 0xffffff,
+                shininess: 100
+            });
+            const sphere = new THREE.Mesh(geometry, material);
+            scene1.add(sphere);
+
+            camera1.position.z = 5;
+
+            // Animation
+            function animate1() {
+                requestAnimationFrame(animate1);
+                sphere.rotation.x += 0.01;
+                sphere.rotation.y += 0.01;
+                renderer1.render(scene1, camera1);
+            }
+            animate1();
+
+            // Second 3D Model
+            const scene2 = new THREE.Scene();
+            const camera2 = new THREE.PerspectiveCamera(75, 300 / 300, 0.1, 1000);
+            const renderer2 = new THREE.WebGLRenderer({ alpha: true });
+            renderer2.setSize(300, 300);
+            document.getElementById('hero-model-2').appendChild(renderer2.domElement);
+
+            // Create floating torus
+            const torusGeometry = new THREE.TorusGeometry(1, 0.3, 16, 100);
+            const torusMaterial = new THREE.MeshPhongMaterial({
+                color: 0x7B1FA2,
+                emissive: 0x220044,
+                specular: 0xffffff,
+                shininess: 100
+            });
+            const torus = new THREE.Mesh(torusGeometry, torusMaterial);
+            scene2.add(torus);
+
+            scene2.add(ambientLight.clone());
+            scene2.add(directionalLight.clone());
+
+            camera2.position.z = 5;
+
+            // Animation
+            function animate2() {
+                requestAnimationFrame(animate2);
+                torus.rotation.x += 0.01;
+                torus.rotation.y += 0.02;
+                renderer2.render(scene2, camera2);
+            }
+            animate2();
+
+            // Third 3D Model (DNA Helix)
+            const scene3 = new THREE.Scene();
+            const camera3 = new THREE.PerspectiveCamera(75, 300 / 300, 0.1, 1000);
+            const renderer3 = new THREE.WebGLRenderer({ alpha: true });
+            renderer3.setSize(300, 300);
+            document.getElementById('hero-model-3').appendChild(renderer3.domElement);
+
+            const dnaGroup = new THREE.Group();
+            
+            // Create DNA strands
+            for(let i = 0; i < 20; i++) {
+                const sphereGeometry = new THREE.SphereGeometry(0.2, 16, 16);
+                const sphere1 = new THREE.Mesh(
+                    sphereGeometry,
+                    new THREE.MeshPhongMaterial({ color: 0xFF4081 })
+                );
+                const sphere2 = new THREE.Mesh(
+                    sphereGeometry,
+                    new THREE.MeshPhongMaterial({ color: 0x7B1FA2 })
+                );
+
+                sphere1.position.x = Math.cos(i * 0.5) * 1.5;
+                sphere1.position.y = i * 0.4 - 4;
+                sphere1.position.z = Math.sin(i * 0.5) * 1.5;
+
+                sphere2.position.x = Math.cos(i * 0.5 + Math.PI) * 1.5;
+                sphere2.position.y = i * 0.4 - 4;
+                sphere2.position.z = Math.sin(i * 0.5 + Math.PI) * 1.5;
+
+                dnaGroup.add(sphere1);
+                dnaGroup.add(sphere2);
+            }
+
+            scene3.add(dnaGroup);
+            scene3.add(ambientLight.clone());
+            scene3.add(directionalLight.clone());
+
+            camera3.position.z = 10;
+
+            function animate3() {
+                requestAnimationFrame(animate3);
+                dnaGroup.rotation.y += 0.02;
+                renderer3.render(scene3, camera3);
+            }
+            animate3();
+
+            // Fourth 3D Model (Floating Rings)
+            const scene4 = new THREE.Scene();
+            const camera4 = new THREE.PerspectiveCamera(75, 300 / 300, 0.1, 1000);
+            const renderer4 = new THREE.WebGLRenderer({ alpha: true });
+            renderer4.setSize(300, 300);
+            document.getElementById('hero-model-4').appendChild(renderer4.domElement);
+
+            const ringsGroup = new THREE.Group();
+
+            for(let i = 0; i < 3; i++) {
+                const ringGeometry = new THREE.TorusGeometry(1.5 - i * 0.3, 0.1, 16, 100);
+                const ring = new THREE.Mesh(
+                    ringGeometry,
+                    new THREE.MeshPhongMaterial({
+                        color: i === 0 ? 0xFF4081 : i === 1 ? 0xFF80AB : 0x7B1FA2,
+                        shininess: 100
+                    })
+                );
+                ring.rotation.x = Math.PI / 4;
+                ring.rotation.y = i * Math.PI / 3;
+                ringsGroup.add(ring);
+            }
+
+            scene4.add(ringsGroup);
+            scene4.add(ambientLight.clone());3
+            scene4.add(directionalLight.clone());
+
+            camera4.position.z = 5;
+
+            function animate4() {
+                requestAnimationFrame(animate4);
+                ringsGroup.rotation.x += 0.01;
+                ringsGroup.rotation.y += 0.01;
+                renderer4.render(scene4, camera4);
+            }
+            animate4();
+        }
+
+        // Initialize 3D models after page load
+        window.addEventListener('load', () => {
+            init3DModels();
+        });
+
+        // Enhanced 3D Model Scroll Effects - Adjusted sensitivity for smoother movement
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const maxScroll = document.body.scrollHeight - window.innerHeight;
+            const scrollPercentage = scrollPosition / maxScroll;
+            
+            // Model 1: Rotate and move based on scroll - reduced movement sensitivity
+            const model1 = document.getElementById('hero-model');
+            if (model1) {
+                model1.style.transform = `translateY(${scrollPosition * 0.1}px) rotate(${scrollPosition * 0.02}deg)`;
+                model1.style.opacity = 1 - (scrollPercentage * 1.2);
+            }
+            
+            // Model 2: Move in opposite direction - smoother movement
+            const model2 = document.getElementById('hero-model-2');
+            if (model2) {
+                model2.style.transform = `translateY(${-scrollPosition * 0.08}px) rotate(${-scrollPosition * 0.01}deg)`;
+                model2.style.opacity = 1 - (scrollPercentage * 1.2);
+            }
+            
+            // Model 3: Enhanced parallax effect with rotation
+            const model3 = document.getElementById('hero-model-3');
+            if (model3) {
+                model3.style.transform = `translate(-50%, ${-50 + scrollPosition * 0.06}%) rotate(${scrollPosition * 0.01}deg)`;
+                model3.style.opacity = 1 - (scrollPercentage * 1.2);
+            }
+            
+            // Model 4: Scale and rotate effect
+            const model4 = document.getElementById('hero-model-4');
+            if (model4) {
+                const scale = 1 - scrollPercentage * 0.2;
+                model4.style.transform = `translateX(-50%) scale(${Math.max(0.8, scale)}) rotate(${scrollPosition * 0.01}deg)`;
+                model4.style.opacity = 1 - (scrollPercentage * 1.2);
+            }
+            
+            // Parallax background effect
+            const parallaxBg = document.getElementById('success-parallax');
+            if (parallaxBg) {
+                const rect = parallaxBg.parentElement.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    const speed = 0.3;
+                    const yPos = (rect.top - window.innerHeight) * speed;
+                    parallaxBg.style.transform = `translateY(${yPos}px)`;
+                }
+            }
+            
+            // Add line connectors between steps
+            const lines = document.querySelectorAll('.magic-line');
+            lines.forEach(line => {
+                const rect = line.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    line.classList.add('active');
+                }
+            });
+        });
+
+        // Success Stories Carousel
+        const successSlides = document.getElementById('success-slides');
+        const carouselDots = document.getElementById('carousel-dots').children;
+        let currentSlide = 0;
+        
+        function showSlide(index) {
+            if (!successSlides) return;
+            
+            currentSlide = index;
+            successSlides.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update dots
+            for (let i = 0; i < carouselDots.length; i++) {
+                carouselDots[i].classList.toggle('active', i === currentSlide);
+            }
+        }
+        
+        document.querySelector('.carousel-next').addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % carouselDots.length;
+            showSlide(currentSlide);
+        });
+        
+        document.querySelector('.carousel-prev').addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + carouselDots.length) % carouselDots.length;
+            showSlide(currentSlide);
+        });
+        
+        // Add click events to dots
+        for (let i = 0; i < carouselDots.length; i++) {
+            carouselDots[i].addEventListener('click', () => {
+                showSlide(i);
+            });
+        }
+        
+        // Auto slide every 5 seconds
+        setInterval(() => {
+            if (!document.hidden) {
+                currentSlide = (currentSlide + 1) % carouselDots.length;
+                showSlide(currentSlide);
+            }
+        }, 5000);
+
+        // Theme Switcher
+        const themeSwitcher = document.getElementById('theme-switcher');
+        const themeIcon = themeSwitcher.querySelector('i');
+        
+        themeSwitcher.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.body.setAttribute('data-theme', newTheme);
+            themeIcon.className = newTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+            
+            // Add transition effect
+            document.body.style.transition = 'background-color 0.5s ease, color 0.5s ease';
+            setTimeout(() => {
+                document.body.style.transition = '';
+            }, 500);
+        });
+
+        // Enhanced scroll animations
+        function enableParallaxEffects() {
+            // Add smooth parallax to selected elements
+            document.querySelectorAll('.feature-icon-container').forEach((el, index) => {
+                el.classList.add(index % 2 === 0 ? 'float-medium' : 'float-slow');
+            });
+            
+            // Add glow effect to selected elements
+            document.querySelectorAll('.step-number, .timeline-dot').forEach(el => {
+                el.classList.add('glow-effect');
+            });
+            
+            // Add float-rotate effect
+            document.querySelectorAll('.social-link').forEach(el => {
+                el.classList.add('float-rotate');
+            });
+        }
+        
+        enableParallaxEffects();
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const parent = question.parentElement;
+                parent.classList.toggle('active');
+                
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (item !== parent) {
+                        item.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // Number Counter Animation
+        function animateNumbers() {
+            document.querySelectorAll('.stat-number').forEach(element => {
+                const finalNumber = element.innerText;
+                const isPlus = finalNumber.includes('+');
+                const targetNumber = parseInt(finalNumber.replace(/[^0-9]/g, ''));
+                
+                let currentNumber = 0;
+                const duration = 2000; // 2 seconds
+                const interval = 50; // Update every 50ms
+                const steps = duration / interval;
+                const increment = targetNumber / steps;
+                
+                const counter = setInterval(() => {
+                    currentNumber += increment;
+                    if (currentNumber >= targetNumber) {
+                        element.innerText = isPlus ? `${targetNumber}+` : targetNumber;
+                        clearInterval(counter);
+                    } else {
+                        element.innerText = isPlus ? `${Math.floor(currentNumber)}+` : Math.floor(currentNumber);
+                    }
+                }, interval);
+            });
+        }
+
+        // Only start number animation when stats are visible
+        function checkStatsVisibility() {
+            const stats = document.querySelector('.stats-section');
+            if (stats) {
+                const rect = stats.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    animateNumbers();
+                    window.removeEventListener('scroll', checkStatsVisibility);
+                }
+            }
+        }
+
+        window.addEventListener('scroll', checkStatsVisibility);
+        window.addEventListener('load', checkStatsVisibility);
+
+        // Add tilt effect to cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const xRotation = ((y - rect.height / 2) / rect.height) * 20;
+                const yRotation = ((x - rect.width / 2) / rect.width) * 20;
+                
+                card.querySelector('.feature-card-inner').style.transform = 
+                    `rotateX(${-xRotation}deg) rotateY(${yRotation}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.querySelector('.feature-card-inner').style.transform = 
+                    'rotateX(0) rotateY(0)';
+            });
+        });
+    </script>
 </body>
 </html>
